@@ -81,6 +81,15 @@ void Forest::listen()
 
 int Forest::init(int na, int np, int _X, int _Y)
 {
+    if (!texture)
+    {
+        texture = new sf::Texture;
+        if (!texture->loadFromFile("res/forest.jpg")) //only grass
+            cout <<"Forest went wrong" <<endl;
+    }
+    sprite = new sf::Sprite;
+    sprite->setTexture(*texture);
+
     n_animals = na;
     animals = new Animal*[n_animals];
     if (!animals) return 1;
@@ -195,7 +204,7 @@ void Forest::live()
         }
         else key_pressed = false;
 
-        window->clear(sf::Color(0,50,0));  // Evergreen forest is behind all the things here.
+        window->clear();  // Evergreen forest is behind all the things here.
         draw();
         window->display();
     }
@@ -207,6 +216,9 @@ void Forest::draw()
 
         // Plants and animals are really trusting to let everyone meddle with their faces.
         // But this is most convenient for the forest.
+
+
+    window -> draw(*sprite);
 
     for (int i=0; i<n_plants; i++)
     {

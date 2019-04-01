@@ -37,6 +37,9 @@ class Forest
         int X, Y;
         sf::RenderWindow *window;
 
+        sf::Sprite* sprite;
+        sf::Texture* texture;
+
         bool key_pressed;
 };
 
